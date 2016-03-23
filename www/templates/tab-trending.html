@@ -1,6 +1,18 @@
-<ion-view view-title="Trending">
+<ion-view view-title="Trending" ng-controller="TrendingCtrl">
   <ion-content>
-    <ion-list>
+    <div class="row" ng-repeat="trend in trends" ng-if="$index % 3 === 0">
+      <div class="col col-33" ng-if="$index < trends.length">
+        <img data-ng-src="{{ trends[$index].images.fixed_height_small.url }}" width="100%" />
+      </div>
+      <div class="col col-33" ng-if="$index + 1 < trends.length">
+        <img data-ng-src="{{ trends[$index + 1].images.fixed_height_small.url }}" width="100%" />
+      </div>
+      <div class="col col-33" ng-if="$index + 2 < trends.length">
+        <img data-ng-src="{{ trends[$index + 2].images.fixed_height_small.url }}" width="100%" />
+      </div>
+    </div> 
+
+    <!--ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
         <img ng-src="{{chat.face}}">
         <h2>{{chat.name}}</h2>
@@ -11,6 +23,6 @@
           Delete
         </ion-option-button>
       </ion-item>
-    </ion-list>
+    </ion-list-->
   </ion-content>
 </ion-view>

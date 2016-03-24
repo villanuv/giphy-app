@@ -25,12 +25,10 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
   $scope.openModal = function(image) {
-    $scope.modalImg = "";
     $scope.modalImg = image;
     $scope.modal.show();
   };
   $scope.closeModal = function() {
-    $scope.modalImg = "";
     $scope.modal.hide();
   };
 
@@ -70,11 +68,22 @@ angular.module('starter.controllers', [])
     $scope.modal.hide();
   };
 
-});
+})
 
-// .controller('ImageCtrl', function($scope, $stateParams, Chats) {
-//   $scope.chat = Chats.get($stateParams.chatId);
-// })
+.controller('SearchCtrl', function($scope, SearchService) {
+  $scope.limit = 25;
+  $scope.offset = 0;
+  $scope.searches = [];
+
+  $scope.searchGiphy = function() {
+    SearchService.GetSearch($scope.searchgiphy).then(function(searches){
+      $scope.searches = searches;
+      $scope.$apply(function() {
+        console.log('$scope.$apply code executed');
+      });
+    });
+  } 
+});
 
 // .controller('AccountCtrl', function($scope) {
 //   $scope.settings = {

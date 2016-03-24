@@ -1,50 +1,46 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
+.factory('UnicornService', function($http){
+  var BASE_URL = "http://api.giphy.com/v1/gifs/search?q=unicorn&api_key=dc6zaTOxFJmzC";
+  var unicorns = [];
 
   return {
-    all: function() {
-      return chats;
+    GetUnicorns: function(){
+      return $http.get(BASE_URL).then(function(resp){
+        unicorns = resp.data.data;
+        return unicorns;
+      });
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
+    GetNewUnicorns: function({limit: limit, offset: offset}){
+      var moreUnicornsUrl = BASE_URL + '&limit=' + limit + '&offset=' + offset;
+      // console.log(moreUnicornsUrl);
+      return $http.get(moreUnicornsUrl).then(function(resp){
+        unicorns = resp.data.data;
+        return unicorns;
+      });
     }
-  };
+  }
+})
+
+
+.factory('TrendsService', function($http) {
+  var BASE_URL = "http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC";
+  var trends = [];
+
+  return {
+    GetTrends: function(){
+      return $http.get(BASE_URL).then(function(resp){
+        trends = resp.data.data;
+        return trends;
+      });
+    },
+    GetNewTrends: function({limit: limit, offset: offset}){
+      var moreTrendsUrl = BASE_URL + '&limit=' + limit + '&offset=' + offset;
+      // console.log(moreTrendsUrl);
+      return $http.get(moreTrendsUrl).then(function(resp){
+        trends = resp.data.data;
+        return trends;
+      });
+    }
+  }
 });

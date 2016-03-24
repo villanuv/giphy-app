@@ -1,33 +1,41 @@
 angular.module('starter.controllers', [])
 
-.controller('UnicornsCtrl', function($scope, $http) {
-  $http.get('http://api.giphy.com/v1/gifs/search?q=unicorn&api_key=dc6zaTOxFJmzC').then(function(resp) {
-    $scope.unicorns = resp.data.data;
-    console.log('SUCCESS', resp.data.data);
-  }, function(err) {
-    console.error('ERR', err);
+.controller('UnicornsCtrl', function($scope, $http, UnicornService) {
+  $scope.limit = 25;
+  $scope.offset = 0;
+  $scope.unicorns = [];
+
+  UnicornService.GetUnicorns().then(function(unicorns){
+    $scope.unicorns = unicorns;
   });
+
+  $scope.loadMore = function() {
+    $scope.offset += $scope.limit;
+
+    UnicornService.GetNewUnicorns({ limit: $scope.limit, offset: $scope.offset }).then(function(unicorns){
+      $scope.unicorns = $scope.unicorns.concat(unicorns);
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    });
+  };
 })
 
-.controller('TrendingCtrl', function($scope, $http) {
-  $http.get('http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC').then(function(resp) {
-    $scope.trends = resp.data.data;
-  }, function(err) {
-    console.error('ERR', err);
+.controller('TrendingCtrl', function($scope, $http, TrendsService) {
+  $scope.limit = 25;
+  $scope.offset = 0;
+  $scope.trends = [];
+
+  TrendsService.GetTrends().then(function(trends){
+    $scope.trends = trends;
   });
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  $scope.loadMore = function() {
+    $scope.offset += $scope.limit;
 
-  // $scope.chats = Chats.all();
-  // $scope.remove = function(chat) {
-  //   Chats.remove(chat);
-  // };
+    TrendsService.GetNewTrends({ limit: $scope.limit, offset: $scope.offset }).then(function(trends){
+      $scope.trends = $scope.trends.concat(trends);
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    });
+  };
 });
 
 // .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

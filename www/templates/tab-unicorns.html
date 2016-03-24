@@ -11,5 +11,7 @@
         <img data-ng-src="{{ unicorns[$index + 2].images.fixed_height_small.url }}" width="100%" />
       </div>
     </div>    
+
+    <ion-infinite-scroll on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
   </ion-content>
 </ion-view>

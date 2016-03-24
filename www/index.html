@@ -36,6 +36,14 @@
       Templates are in the /templates folder (but you could also
       have templates inline in this html file if you'd like).
     -->
+    <script id="modal.html" type="text/ng-template">
+      <ion-modal-view class="modalView">
+        <ion-content>
+          <img data-ng-src="{{ modalImg }}" width="100%" ng-click="closeModal();" class="imgModal" />
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
     <ion-nav-view></ion-nav-view>
   </body>
 </html>

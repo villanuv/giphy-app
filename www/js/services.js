@@ -8,6 +8,7 @@ angular.module('starter.services', [])
     GetUnicorns: function(){
       return $http.get(BASE_URL).then(function(resp){
         unicorns = resp.data.data;
+        console.log(unicorns);
         return unicorns;
       });
     },

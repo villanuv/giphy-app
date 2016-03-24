@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('UnicornsCtrl', function($scope, $http, UnicornService) {
+.controller('UnicornsCtrl', function($scope, $http, $ionicModal, UnicornService) {
   $scope.limit = 25;
   $scope.offset = 0;
   $scope.unicorns = [];
@@ -17,9 +17,26 @@ angular.module('starter.controllers', [])
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
   };
+
+  $ionicModal.fromTemplateUrl('modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function(image) {
+    $scope.modalImg = "";
+    $scope.modalImg = image;
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modalImg = "";
+    $scope.modal.hide();
+  };
+
 })
 
-.controller('TrendingCtrl', function($scope, $http, TrendsService) {
+.controller('TrendingCtrl', function($scope, $http, $ionicModal, TrendsService) {
   $scope.limit = 25;
   $scope.offset = 0;
   $scope.trends = [];
@@ -36,9 +53,26 @@ angular.module('starter.controllers', [])
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
   };
+
+  $ionicModal.fromTemplateUrl('modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function(image) {
+    $scope.modalImg = "";
+    $scope.modalImg = image;
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modalImg = "";
+    $scope.modal.hide();
+  };
+
 });
 
-// .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+// .controller('ImageCtrl', function($scope, $stateParams, Chats) {
 //   $scope.chat = Chats.get($stateParams.chatId);
 // })
 

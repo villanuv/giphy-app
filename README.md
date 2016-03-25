@@ -1,25 +1,19 @@
-Ionic App Base
-=====================
+# GiphyApp
 
-A starting project for Ionic that optionally supports using custom SCSS.
+![output](https://raw.github.com/villanuv/giphy-app/master/screens.jpg)
 
-## Using this project
+## For Snapmobile
 
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
+Using Ionic, this is a mobile app that uses Giphy's API to display three views in a grid: thumbnails of unicorn gifs, trending gifs and an option to search their database. Tapping on any of the thumbnails brings up a larger/zoomed in version of the selected. A tap on the larger image closes it. Infinite scrolling is available for the unicorns and trending views.
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+I've pretty much stayed with Ionic's tab view, modified accordingly, and initially set this up for iOS. Due to OS limitations, I could not test out the emulator.
 
-```bash
-$ npm install -g ionic
-```
+Things to correct include:
 
-Then run:
+1) Infinite scrolling and its image functionality for the search view.
 
-```bash
-$ ionic start myProject tabs
-```
+2) Add search bar to the unicorns and trending views.
 
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
+3) Correct glitch delay in image source popup. 
 
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
+[original challenge](https://github.com/SnapMobileIO/all-the-unicorns)

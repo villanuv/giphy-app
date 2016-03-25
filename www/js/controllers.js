@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('UnicornsCtrl', function($scope, $http, $ionicModal, UnicornService) {
+.controller('UnicornsCtrl', function($scope, $ionicModal, UnicornService) {
   $scope.limit = 25;
   $scope.offset = 0;
   $scope.unicorns = [];
@@ -34,7 +34,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('TrendingCtrl', function($scope, $http, $ionicModal, TrendsService) {
+.controller('TrendingCtrl', function($scope, $ionicModal, TrendsService) {
   $scope.limit = 25;
   $scope.offset = 0;
   $scope.trends = [];
@@ -70,15 +70,30 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('SearchCtrl', function($scope, SearchService) {
+.controller('SearchCtrl', function($scope, $ionicModal, SearchService) {
   $scope.searches = [];
 
   $scope.searchGiphy = function() {
-    console.log($scope.searchterms);
     SearchService.GetSearch($scope.searchterms).then(function(searches){
       $scope.searches = searches;
       $scope.$apply();
     });
+  };
+
+  $ionicModal.fromTemplateUrl('modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function(image) {
+    $scope.modalImg = "";
+    $scope.modalImg = image;
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modalImg = "";
+    $scope.modal.hide();
   };
 
 });

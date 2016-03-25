@@ -71,22 +71,14 @@ angular.module('starter.controllers', [])
 })
 
 .controller('SearchCtrl', function($scope, SearchService) {
-  $scope.limit = 25;
-  $scope.offset = 0;
   $scope.searches = [];
 
   $scope.searchGiphy = function() {
-    SearchService.GetSearch($scope.searchgiphy).then(function(searches){
+    console.log($scope.searchterms);
+    SearchService.GetSearch($scope.searchterms).then(function(searches){
       $scope.searches = searches;
-      $scope.$apply(function() {
-        console.log('$scope.$apply code executed');
-      });
+      $scope.$apply();
     });
-  } 
-});
+  };
 
-// .controller('AccountCtrl', function($scope) {
-//   $scope.settings = {
-//     enableFriends: true
-//   };
-// });
+});

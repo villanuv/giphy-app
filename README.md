@@ -2,7 +2,7 @@
 
 ![output](https://raw.github.com/villanuv/giphy-app/master/screens.jpg)
 
-## For Snapmobile
+## For SnapMobile
 
 Using Ionic, this is a mobile app that uses Giphy's API to display three views in a grid: thumbnails of unicorn gifs, trending gifs and an option to search their database. Tapping on any of the thumbnails brings up a larger/zoomed in version of the selected. A tap on the larger image closes it. Infinite scrolling is available for the unicorns and trending views.
 

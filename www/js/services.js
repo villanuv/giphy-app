@@ -69,20 +69,3 @@ angular.module('starter.services', [])
     }
   }
 });
-
-
-// .factory('SearchService', function($http) {
-//   var BASE_URL = "http://api.giphy.com/v1/gifs/search?q=";
-//   var API_KEY  = "&limit=100&api_key=dc6zaTOxFJmzC" 
-//   var searches = [];
-
-//   return {
-//     GetSearch: function(string){
-//       var urlString = BASE_URL + string.replace(/\s+/g, '+') + API_KEY;
-//       return $http.get(urlString).then(function(resp){
-//         searches = resp.data.data;
-//         return searches;
-//       });
-//     }   
-//   };
-// });

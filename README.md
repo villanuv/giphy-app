@@ -16,7 +16,9 @@ Things to correct include:
 
 ~~3) Correct glitch delay in image source popup.~~
 
-4) Loading glitch with loading.gif
+4) Reset views when selecting menus, if search previously performed.
+
+5) Loading glitch with modal's loading.gif
 
 
 [original challenge](https://github.com/SnapMobileIO/all-the-unicorns)

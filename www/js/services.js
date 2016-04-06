@@ -13,19 +13,22 @@ angular.module('starter.services', [])
   };
 })
 
+
 .factory('UnicornService', function($http){
-  var BASE_URL = "http://api.giphy.com/v1/gifs/search?q=unicorn&api_key=dc6zaTOxFJmzC";
+  var BASE_URL = "http://api.giphy.com/v1/gifs/search?q="
+  var API_KEY = "&api_key=dc6zaTOxFJmzC";
   var unicorns = [];
 
   return {
-    GetUnicorns: function(){
-      return $http.get(BASE_URL).then(function(resp){
+    GetUnicorns: function(string){
+      var searchURL = BASE_URL + string + API_KEY;
+      return $http.get(searchURL).then(function(resp){
         unicorns = resp.data.data;
         return unicorns;
       });
     },
-    GetNewUnicorns: function({limit: limit, offset: offset}){
-      var moreUnicornsUrl = BASE_URL + '&limit=' + limit + '&offset=' + offset;
+    GetNewUnicorns: function({string: string, limit: limit, offset: offset}){
+      var moreUnicornsUrl = BASE_URL + string + API_KEY + '&limit=' + limit + '&offset=' + offset;
       return $http.get(moreUnicornsUrl).then(function(resp){
         unicorns = resp.data.data;
         return unicorns;
@@ -35,38 +38,51 @@ angular.module('starter.services', [])
 })
 
 .factory('TrendsService', function($http) {
-  var BASE_URL = "http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC";
+  var BASE_URL = "http://api.giphy.com/v1/gifs/";
+  var API_KEY = "api_key=dc6zaTOxFJmzC"
   var trends = [];
 
   return {
-    GetTrends: function(){
-      return $http.get(BASE_URL).then(function(resp){
+    GetTrends: function(string){
+      if(string == 'trending'){
+        string = 'trending?';
+      } else {
+        string = 'search?q=' + string + '&';
+      }
+      var trendsURL = BASE_URL + string + API_KEY;
+      return $http.get(trendsURL).then(function(resp){
         trends = resp.data.data;
         return trends;
       });
     },
-    GetNewTrends: function({limit: limit, offset: offset}){
-      var moreTrendsUrl = BASE_URL + '&limit=' + limit + '&offset=' + offset;
+    GetNewTrends: function({string: string, limit: limit, offset: offset}){
+      if(string == 'trending'){
+        string = 'trending?';
+      } else {
+        string = 'search?q=' + string + '&';
+      }
+      var moreTrendsUrl = BASE_URL + string + API_KEY + '&limit=' + limit + '&offset=' + offset;
       return $http.get(moreTrendsUrl).then(function(resp){
         trends = resp.data.data;
         return trends;
       });
     }
   }
-})
-
-.factory('SearchService', function($http) {
-  var BASE_URL = "http://api.giphy.com/v1/gifs/search?q=";
-  var API_KEY  = "&limit=100&api_key=dc6zaTOxFJmzC" 
-  var searches = [];
-
-  return {
-    GetSearch: function(string){
-      var urlString = BASE_URL + string.replace(/\s+/g, '+') + API_KEY;
-      return $http.get(urlString).then(function(resp){
-        searches = resp.data.data;
-        return searches;
-      });
-    }   
-  };
 });
+
+
+// .factory('SearchService', function($http) {
+//   var BASE_URL = "http://api.giphy.com/v1/gifs/search?q=";
+//   var API_KEY  = "&limit=100&api_key=dc6zaTOxFJmzC" 
+//   var searches = [];
+
+//   return {
+//     GetSearch: function(string){
+//       var urlString = BASE_URL + string.replace(/\s+/g, '+') + API_KEY;
+//       return $http.get(urlString).then(function(resp){
+//         searches = resp.data.data;
+//         return searches;
+//       });
+//     }   
+//   };
+// });

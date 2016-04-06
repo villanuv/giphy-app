@@ -1,6 +1,6 @@
 # GiphyApp
 
-![output](https://raw.github.com/villanuv/giphy-app/master/screens.jpg)
+![output](https://raw.github.com/villanuv/giphy-app/blob/master/screens.jpg)
 
 ## For SnapMobile
 

@@ -6,8 +6,6 @@ angular.module('starter.controllers', [])
   $scope.unicorns = [];
   $scope.searchbarData = {terms: 'unicorn'};
 
-  console.log($ionicNavBarDelegate.title);
-
   $scope.update = function(string) {
     var stringFix = string.terms.replace(/\s+/g, '+');
     $scope.searchbarData = angular.copy({terms: stringFix});

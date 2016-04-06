@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('UnicornsCtrl', function($scope, $state, $ionicNavBarDelegate, $ionicModal, $timeout, UnicornService) {
+.controller('UnicornsCtrl', function($scope, $ionicNavBarDelegate, $ionicModal, $timeout, UnicornService) {
   $scope.limit = 25;
   $scope.offset = 0;
   $scope.unicorns = [];
@@ -66,6 +66,7 @@ angular.module('starter.controllers', [])
   $scope.searchbarData = {terms: 'trending'};
 
   $scope.$on('$ionicView.enter', function() {
+    console.log('initialize');
     $scope.searchbarData = {terms: 'trending'};
     $scope.searchbar = {};
     $scope.trends.length = 0;

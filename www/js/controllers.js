@@ -1,25 +1,30 @@
 angular.module('starter.controllers', [])
 
-.controller('UnicornsCtrl', function($scope, $ionicNavBarDelegate, $ionicModal, $timeout, UnicornService) {
+.controller('UnicornsCtrl', function($scope, $state, $ionicNavBarDelegate, $ionicModal, $timeout, UnicornService) {
   $scope.limit = 25;
   $scope.offset = 0;
   $scope.unicorns = [];
   $scope.searchbarData = {terms: 'unicorn'};
 
+  $scope.$on('$ionicView.enter', function() {
+    $scope.searchbarData = {terms: 'unicorn'};
+    $scope.searchbar = {};
+    $scope.unicorns.length = 0;
+    UnicornService.GetUnicorns($scope.searchbarData.terms).then(function(unicorns){
+      $scope.unicorns = unicorns;
+    });
+  });
+
   $scope.update = function(string) {
     var stringFix = string.terms.replace(/\s+/g, '+');
     $scope.searchbarData = angular.copy({terms: stringFix});
-    $scope.searchbar = '';
+    $scope.searchbar = {};
     $scope.unicorns.length = 0;
     UnicornService.GetUnicorns($scope.searchbarData.terms).then(function(unicorns){
       $scope.unicorns = unicorns;
     });
     $ionicNavBarDelegate.title('Search: ' + string.terms);
   };
-
-  UnicornService.GetUnicorns($scope.searchbarData.terms).then(function(unicorns){
-    $scope.unicorns = unicorns;
-  });
 
   $scope.loadMore = function() {
     $scope.offset += $scope.limit;
@@ -60,20 +65,25 @@ angular.module('starter.controllers', [])
   $scope.trends = [];
   $scope.searchbarData = {terms: 'trending'};
 
+  $scope.$on('$ionicView.enter', function() {
+    $scope.searchbarData = {terms: 'trending'};
+    $scope.searchbar = {};
+    $scope.trends.length = 0;
+    TrendsService.GetTrends($scope.searchbarData.terms).then(function(trends){
+      $scope.trends = trends;
+    });
+  });
+
   $scope.update = function(string) {
     var stringFix = string.terms.replace(/\s+/g, '+');
     $scope.searchbarData = angular.copy({terms: stringFix});
-    $scope.searchbar = '';
+    $scope.searchbar = {};
     $scope.trends.length = 0;
     TrendsService.GetTrends($scope.searchbarData.terms).then(function(trends){
       $scope.trends = trends;
     });
     $ionicNavBarDelegate.title('Search: ' + string.terms);
   };
-
-  TrendsService.GetTrends($scope.searchbarData.terms).then(function(trends){
-    $scope.trends = trends;
-  });
 
   $scope.loadMore = function() {
     $scope.offset += $scope.limit;

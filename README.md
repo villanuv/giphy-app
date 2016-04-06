@@ -10,11 +10,11 @@ I've pretty much stayed with Ionic's tab view, modified accordingly, and initial
 
 Things to correct include:
 
-~1) Infinite scrolling and its image functionality for the search view.~
+~~1) Infinite scrolling and its image functionality for the search view.~~
 
-~2) Add search bar to the unicorns and trending views.~
+~~2) Add search bar to the unicorns and trending views.~~
 
-~3) Correct glitch delay in image source popup.~
+~~3) Correct glitch delay in image source popup.~~
 
 4) Loading glitch with loading.gif
 

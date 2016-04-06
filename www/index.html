@@ -24,12 +24,13 @@
     <script src="js/services.js"></script>
   </head>
   <body ng-app="starter">
-    <ion-nav-bar></ion-nav-bar>
+    <ion-nav-bar class="bar-dark"></ion-nav-bar>
 
     <script id="modal.html" type="text/ng-template">
       <ion-modal-view class="modalView">
         <ion-content>
           <img data-ng-src="{{ modalImg }}" width="100%" ng-click="closeModal();" class="imgModal" />
+          <div class="modalCaption">tap to close</div>
         </ion-content>
       </ion-modal-view>
     </script>

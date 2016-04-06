@@ -66,7 +66,6 @@ angular.module('starter.controllers', [])
   $scope.searchbarData = {terms: 'trending'};
 
   $scope.$on('$ionicView.enter', function() {
-    console.log('initialize');
     $scope.searchbarData = {terms: 'trending'};
     $scope.searchbar = {};
     $scope.trends.length = 0;

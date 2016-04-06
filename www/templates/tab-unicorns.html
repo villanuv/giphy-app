@@ -1,17 +1,10 @@
 <ion-view view-title="Unicorns" ng-controller="UnicornsCtrl">
   <ion-content>
-    <div class="row" ng-repeat="unicorn in unicorns" ng-if="$index % 3 === 0">
-      <div class="col col-33" ng-if="$index < unicorns.length">
-        <img data-ng-src="{{ unicorns[$index].images.fixed_height_small.url }}" width="100%" ng-click="openModal('{{ unicorns[$index].images.downsized.url }}')" />
-      </div>
-      <div class="col col-33" ng-if="$index + 1 < unicorns.length">
-        <img data-ng-src="{{ unicorns[$index + 1].images.fixed_height_small.url }}" width="100%" ng-click="openModal('{{ unicorns[$index + 1].images.downsized.url }}')" />
-      </div>
-      <div class="col col-33" ng-if="$index + 2 < unicorns.length">
-        <img data-ng-src="{{ unicorns[$index + 2].images.fixed_height_small.url }}" width="100%" ng-click="openModal('{{ unicorns[$index + 2].images.downsized.url }}')" />
-      </div>
-    </div>    
+    <input name="giphySearch" type="search" ng-model="searchbar.terms" class="full-width" ng-enter="update(searchbar)" value="" placeholder="Search Giphy">
 
+    <img collection-repeat="unicorn in unicorns" item-width="33%" item-height="100px" ng-src="{{unicorn.images.fixed_height_downsampled.url}}" ng-click="openModal(unicorn.images.downsized.url)" class="thumbs" />
+    
     <ion-infinite-scroll on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
   </ion-content>
+
 </ion-view>
